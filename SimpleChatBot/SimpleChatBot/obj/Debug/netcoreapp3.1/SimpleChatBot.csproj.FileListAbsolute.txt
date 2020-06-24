@@ -1,0 +1,13 @@
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\bin\Debug\netcoreapp3.1\SimpleChatBot.exe
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\bin\Debug\netcoreapp3.1\SimpleChatBot.deps.json
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\bin\Debug\netcoreapp3.1\SimpleChatBot.runtimeconfig.json
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\bin\Debug\netcoreapp3.1\SimpleChatBot.runtimeconfig.dev.json
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\bin\Debug\netcoreapp3.1\SimpleChatBot.dll
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\bin\Debug\netcoreapp3.1\SimpleChatBot.pdb
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\obj\Debug\netcoreapp3.1\SimpleChatBot.csprojAssemblyReference.cache
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\obj\Debug\netcoreapp3.1\SimpleChatBot.AssemblyInfoInputs.cache
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\obj\Debug\netcoreapp3.1\SimpleChatBot.AssemblyInfo.cs
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\obj\Debug\netcoreapp3.1\SimpleChatBot.csproj.CoreCompileInputs.cache
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\obj\Debug\netcoreapp3.1\SimpleChatBot.dll
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\obj\Debug\netcoreapp3.1\SimpleChatBot.pdb
+F:\PROJECTS\SimpleChatBot\SimpleChatBot\obj\Debug\netcoreapp3.1\SimpleChatBot.genruntimeconfig.cache
