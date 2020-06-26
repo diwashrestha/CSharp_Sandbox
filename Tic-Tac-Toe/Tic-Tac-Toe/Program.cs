@@ -44,8 +44,15 @@ namespace Tic_Tac_Toe
             }
             Console.WriteLine("---------");
 
+         
+
 
             Console.ReadLine();
+        }
+
+        void GameCases(char[,] userInput)
+        {
+            if(())
         }
     }
 }
