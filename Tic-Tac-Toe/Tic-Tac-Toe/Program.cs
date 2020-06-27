@@ -44,15 +44,44 @@ namespace Tic_Tac_Toe
             }
             Console.WriteLine("---------");
 
-         
-
-
+            GameCases(user2dInput);
+            Sum();
             Console.ReadLine();
         }
 
-        void GameCases(char[,] userInput)
+        public static void GameCases(char[,] userInput)
         {
-            if(())
+            string gameResult = "";
+            var gameSign = new[] {'X', 'O', '_'};
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if ((userInput[i,j] == gameSign[2]))
+                    {
+                        gameResult = "Game not finished";
+                    }
+                    else
+                    {
+                        if (userInput[0,0] == userInput[0,0])
+                        {
+                            
+                        }
+                    }
+                }
+            }
+            Console.WriteLine(gameResult);
+            return;
+        }
+
+        public static void Sum()
+        {
+            int x = 2;
+            int y = 4;
+
+            Console.WriteLine(x+y);
+
         }
     }
 }
