@@ -4,13 +4,13 @@ namespace Tic_Tac_Toe
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             // Console.WriteLine("X O X");
             // Console.WriteLine("O X O");
             // Console.WriteLine("X X O");
 
-            
+
             Console.WriteLine("Enter cells:");
             string userInput = Console.ReadLine();
             Console.WriteLine(userInput);
@@ -45,7 +45,7 @@ namespace Tic_Tac_Toe
             Console.WriteLine("---------");
 
             GameCases(user2dInput);
-            Sum();
+            CheckWin(user2dInput);
             Console.ReadLine();
         }
 
@@ -62,25 +62,35 @@ namespace Tic_Tac_Toe
                     {
                         gameResult = "Game not finished";
                     }
-                    else
-                    {
-                        if (userInput[0,0] == userInput[0,0])
-                        {
-                            
-                        }
-                    }
                 }
             }
             Console.WriteLine(gameResult);
             return;
         }
 
-        public static void Sum()
-        {
-            int x = 2;
-            int y = 4;
 
-            Console.WriteLine(x+y);
+        private static bool CheckWin(char[,] input)
+        {
+            if (IsWin(input,'X'))
+            {
+                Console.WriteLine("X WINS!");
+                
+            }
+            else if (IsWin(input,'O'))
+            {
+                Console.WriteLine("O WINS!");
+            }
+            return true;
+
+        }
+
+
+        static bool IsWin(char[,] userInput, char sign)
+        {
+            // row win case
+            return (userInput[0, 0] == sign && userInput[0, 1] == sign && userInput[0, 2] == sign
+                    || userInput[1, 0] == sign && userInput[1, 1] == sign && userInput[1, 2] == sign
+                    || userInput[2, 0] == sign && userInput[2, 1] == sign && userInput[2, 2] == sign);
 
         }
     }
