@@ -58,29 +58,38 @@ namespace Tic_Tac_Toe
             Console.WriteLine("Enter the Coordinates: ");
             string coord = Console.ReadLine();
             char[] coordCharArray = coord.ToCharArray();
-            int[] coordIntArray = Array.ConvertAll(coordCharArray, c => (int)Char.GetNumericValue(c));
-
-            char[,] gridInput = CheckUserCoord(coordIntArray, grid2DArray);
+            char[,] gridInput = CheckUserCoord(coordCharArray, grid2DArray);
             return gridInput;
         }
 
         // Method for checking the  user input for the coordinates
-        public static char[,]  CheckUserCoord(int[] userCoord, char[,] gridInput)
+        public static char[,]  CheckUserCoord(char[] userCharCoord, char[,] gridInput)
         {
-            if (userCoord[0] > 3 || userCoord[0] < 1 || userCoord[1] > 3 || userCoord[1] < 1)
+            int number;
+            int[] userCoord = new int[2];
+            if(Int32.TryParse(userCharCoord, out number) == false)
             {
-                Console.WriteLine("Coordinates should be from 1 to 3!");
-                TakeUserCoord(gridInput);
-            }
-
-            else if (gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'X' || gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'O')
-            {
-                Console.WriteLine("This cell is occupied! Choose another one!");
+                Console.WriteLine("Enter Number only!");
                 TakeUserCoord(gridInput);
             }
             else
             {
-                gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] = 'X';
+                userCoord = Array.ConvertAll(userCharCoord, c => (int)Char.GetNumericValue(c));
+                if (userCoord[0] > 3 || userCoord[0] < 1 || userCoord[1] > 3 || userCoord[1] < 1)
+                {
+                    Console.WriteLine("Coordinates should be from 1 to 3!");
+                    TakeUserCoord(gridInput);
+                }
+
+                else if (gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'X' || gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'O')
+                {
+                    Console.WriteLine("This cell is occupied! Choose another one!");
+                    TakeUserCoord(gridInput);
+                }
+                else
+                {
+                    gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] = 'X';
+                }
             }
             return gridInput;
         }
