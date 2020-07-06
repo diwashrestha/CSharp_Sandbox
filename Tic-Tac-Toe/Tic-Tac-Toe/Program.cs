@@ -14,8 +14,18 @@ namespace Tic_Tac_Toe
 
 
             // stage 2
+            // final stage
+            Console.WriteLine("The grid and coordinates for the game is:");
+
+            Console.WriteLine("\n------------------");
+            Console.WriteLine("| (13) (23) (33) |");
+            Console.WriteLine("| (12) (22) (32) |");
+            Console.WriteLine("| (11) (21) (31) |");
+            Console.WriteLine("------------------");
+
+
             Console.WriteLine("Enter cells: ");
-            string userInput = Console.ReadLine();
+            string userInput = "         ";
             char[] user1dInput = userInput.ToCharArray();
 
             bool gameEnd = false;
@@ -33,24 +43,19 @@ namespace Tic_Tac_Toe
             }
 
             PrintUserArray(user2dInput);
-
-            TakeUserCoord(user2dInput);
-
-            // Taking coordinates from user
-            //string coord = Console.ReadLine();
-            //char[] coorCharArray = coord.ToCharArray();
-            //int[] coordIntArray = Array.ConvertAll(coorCharArray, c => (int)Char.GetNumericValue(c));
-
-
-            //user2dInput[(3 - coordIntArray[1]), (coordIntArray[0] - 1)] = 'X';
+            user2dInput =  TakeUserCoord(user2dInput);
             PrintUserArray(user2dInput);
 
-            // if (CheckWin(user2dInput, ref gameEnd, ref gameMessage))
-           // {
-           //     Console.WriteLine("{0}",gameMessage);
-           // }
+            if (CheckWin(user2dInput, ref gameEnd, ref gameMessage))
+            {
+                Console.WriteLine("{0}", gameMessage);
+            }
+            else
+                Console.WriteLine("{0}", gameMessage);
             Console.ReadLine();
         }
+
+
 
         // Method for taking user input for the Coordinates
         private static char[,]  TakeUserCoord(char[,] grid2DArray)
@@ -61,6 +66,8 @@ namespace Tic_Tac_Toe
             char[,] gridInput = CheckUserCoord(coordCharArray, grid2DArray);
             return gridInput;
         }
+
+
 
         // Method for checking the  user input for the coordinates
         public static char[,]  CheckUserCoord(char[] userCharCoord, char[,] gridInput)
@@ -94,6 +101,7 @@ namespace Tic_Tac_Toe
             return gridInput;
         }
 
+
         private static char PrintUserArray(char [,] userInput)
         {
 
@@ -114,6 +122,7 @@ namespace Tic_Tac_Toe
             Console.WriteLine("---------");
             return '0';
         }
+
 
         private static bool CheckWin(char[,] input, ref bool gameEnd , ref string gameMessage)
         {
@@ -150,6 +159,7 @@ namespace Tic_Tac_Toe
             return gameEnd;
         }
 
+
         // method for wining condition
         static bool IsWin(char[,] userInput, char sign)
         {
@@ -165,6 +175,7 @@ namespace Tic_Tac_Toe
                     || userInput[0, 0] == sign && userInput[1, 1] == sign && userInput[2, 2] == sign
                     || userInput[0, 2] == sign && userInput[1, 1] == sign && userInput[2, 0] == sign);
         }
+
 
         // method to check the draw condition
         static bool IsDraw(char[,] userInput)
@@ -191,6 +202,7 @@ namespace Tic_Tac_Toe
 
             return isDraw;
         }
+
 
         static int CharCounter(char[,] userArray, char sign)
         {
