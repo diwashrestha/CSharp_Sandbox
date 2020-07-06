@@ -6,9 +6,12 @@ namespace Tic_Tac_Toe
     {
         public static void Main(string[] args)
         {
-            //  stage 5
+            int[] winCount = new int[] { 0, 0, 0 };
+        //  for replaying the game
+        GameStart:
             Console.WriteLine("The grid and coordinates for the game is:");
 
+// showing grid of the program
             Console.WriteLine("\n------------------");
             Console.WriteLine("| (13) (23) (33) |");
             Console.WriteLine("| (12) (22) (32) |");
@@ -17,12 +20,18 @@ namespace Tic_Tac_Toe
 
 
             Console.WriteLine("\n ***** Tic - Tac - Toe ! ***** : \n");
+            // At the beginning of the game it is empty
             string userInput = "         ";
             char[] user1dInput = userInput.ToCharArray();
+
+            // At the start of the game  X player initiate the game
             char player = 'X';
 
+            // boolean to track the ending of the game and message to be printed at the end of game
             bool gameEnd = false;
             string gameMessage = "";
+
+            // Changing the 1d array to 2d array
             char[,] user2dInput = new char[3,3];
             int index = 0;
 
@@ -37,6 +46,8 @@ namespace Tic_Tac_Toe
 
             PrintUserArray(user2dInput);
 
+
+            // this loop keeps running till the gameEnd value is not true
             while(!gameEnd)
             {
                 user2dInput = TakeUserCoord(user2dInput,ref player);
@@ -44,11 +55,53 @@ namespace Tic_Tac_Toe
 
                 player = player == 'X' ? 'O' : 'X';
 
-                CheckWin(user2dInput, ref gameEnd, ref gameMessage);
+                CheckWin(user2dInput, ref gameEnd, ref gameMessage, ref winCount);
             }
             Console.WriteLine("{0}", gameMessage);
+            Console.WriteLine(" ----------------------------");
+            Console.WriteLine(" |         Point Table       |");
+            Console.WriteLine(" ----------------------------");
+            Console.WriteLine(" |    X    |    O   |  Draw  |");
+            Console.WriteLine(" ----------------------------");
+            Console.Write(" |");
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write("    {0}    ", winCount[i]);
+            }
+            Console.Write("|");
+            Console.Write("\n");
+            Console.WriteLine(" ---------------------------");
 
-            Console.ReadLine();
+
+            // Can be replay the game
+            Console.WriteLine("Do you want play once more (yes|no) ?");
+            string userVote = Console.ReadLine();
+            if (userVote == "yes")
+            {
+                Console.Clear();
+                Console.WriteLine("Lets play Again!\n");
+                goto GameStart;
+            }
+            else
+            {
+                Console.WriteLine(" ----------------------------");
+                Console.WriteLine(" |         Point Table       |");
+                Console.WriteLine(" ----------------------------");
+                Console.WriteLine(" |    X    |    O   |  Draw  |");
+                Console.WriteLine(" ----------------------------");
+                Console.Write(" |");
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.Write("    {0}    ", winCount[i]);
+                }
+                Console.Write("|");
+                Console.Write("\n");
+                Console.WriteLine(" ---------------------------");
+                Console.WriteLine("*** Have a great day! ***");
+            }
+
+
+            Console.Read();
         }
 
 
@@ -98,30 +151,34 @@ namespace Tic_Tac_Toe
             return gridInput;
         }
 
-
+        // Method to print the 2d array of tic tac toe
         private static char PrintUserArray(char [,] userInput)
         {
 
-            Console.WriteLine("---------");
+            Console.WriteLine("-------------");
+            Console.WriteLine();
             for (int i = 0; i < 3; i++)
             {
                 Console.Write("|");
                 Console.Write(" ");
                 for (int j = 0; j < 3; j++)
                 {
+                    Console.Write(" ");
                     Console.Write(userInput[i, j]);
                     Console.Write(" ");
                 }
                 Console.Write(" ");
                 Console.Write("|");
                 Console.Write("\n");
+                Console.WriteLine();
             }
-            Console.WriteLine("---------");
+            Console.WriteLine("-------------");
             return '0';
         }
 
 
-        private static bool CheckWin(char[,] input, ref bool gameEnd , ref string gameMessage)
+        // method to check the different game situation
+        private static bool CheckWin(char[,] input, ref bool gameEnd , ref string gameMessage, ref int[] winCount)
         {
             // var to check the difference between 'X' and 'O' count in grid
             int charCountDiff = 0;
@@ -136,16 +193,19 @@ namespace Tic_Tac_Toe
             {
                 gameEnd = true;
                 gameMessage = "X Wins!";
+                winCount[0]++;
             }
             else if (IsWin(input,'O'))
             {
                 gameEnd = true;
                 gameMessage = "O Wins!";
+                winCount[1]++;
             }
             else if (IsDraw(input))
             {
                 gameEnd = true;
                 gameMessage = "Draw!";
+                winCount[2]++;
             }
             else if (!IsWin(input, 'X') && !IsWin(input, 'O') && !IsDraw(input))
             {
@@ -157,7 +217,7 @@ namespace Tic_Tac_Toe
         }
 
 
-        // method for wining condition
+        // method for finding winning condition
         static bool IsWin(char[,] userInput, char sign)
         {
             // row win case
@@ -200,7 +260,8 @@ namespace Tic_Tac_Toe
             return isDraw;
         }
 
-
+        // Method to find the impossible cases where
+        // the field has a lot more X's than O's or vice versa
         static int CharCounter(char[,] userArray, char sign)
         {
             int count = 0;
