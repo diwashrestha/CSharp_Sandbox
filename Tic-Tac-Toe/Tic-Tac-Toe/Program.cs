@@ -24,9 +24,10 @@ namespace Tic_Tac_Toe
             Console.WriteLine("------------------");
 
 
-            Console.WriteLine("Enter cells: ");
+            Console.WriteLine("Tic - Tac - Toe ! : ");
             string userInput = "         ";
             char[] user1dInput = userInput.ToCharArray();
+            char player = 'X';
 
             bool gameEnd = false;
             string gameMessage = "";
@@ -43,41 +44,42 @@ namespace Tic_Tac_Toe
             }
 
             PrintUserArray(user2dInput);
-            user2dInput =  TakeUserCoord(user2dInput);
-            PrintUserArray(user2dInput);
 
-            if (CheckWin(user2dInput, ref gameEnd, ref gameMessage))
+            while(!gameEnd)
             {
-                Console.WriteLine("{0}", gameMessage);
+                user2dInput = TakeUserCoord(user2dInput,ref player);
+                PrintUserArray(user2dInput);
+                CheckWin(user2dInput, ref gameEnd, ref gameMessage);
             }
-            else
-                Console.WriteLine("{0}", gameMessage);
+            Console.WriteLine("{0}", gameMessage);
+
             Console.ReadLine();
         }
 
 
 
         // Method for taking user input for the Coordinates
-        private static char[,]  TakeUserCoord(char[,] grid2DArray)
+        private static char[,]  TakeUserCoord(char[,] grid2DArray, ref char player)
         {
-            Console.WriteLine("Enter the Coordinates: ");
+
+            Console.WriteLine("[Player {0}] \n Enter the Coordinates: ",player);
             string coord = Console.ReadLine();
             char[] coordCharArray = coord.ToCharArray();
-            char[,] gridInput = CheckUserCoord(coordCharArray, grid2DArray);
+            char[,] gridInput = CheckUserCoord(coordCharArray, grid2DArray, ref player);
             return gridInput;
         }
 
 
 
         // Method for checking the  user input for the coordinates
-        public static char[,]  CheckUserCoord(char[] userCharCoord, char[,] gridInput)
+        public static char[,]  CheckUserCoord(char[] userCharCoord, char[,] gridInput, ref char player)
         {
             int number;
             int[] userCoord = new int[2];
             if(Int32.TryParse(userCharCoord, out number) == false)
             {
                 Console.WriteLine("Enter Number only!");
-                TakeUserCoord(gridInput);
+                TakeUserCoord(gridInput, ref player);
             }
             else
             {
@@ -85,19 +87,25 @@ namespace Tic_Tac_Toe
                 if (userCoord[0] > 3 || userCoord[0] < 1 || userCoord[1] > 3 || userCoord[1] < 1)
                 {
                     Console.WriteLine("Coordinates should be from 1 to 3!");
-                    TakeUserCoord(gridInput);
+                    TakeUserCoord(gridInput, ref player);
                 }
 
                 else if (gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'X' || gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'O')
                 {
                     Console.WriteLine("This cell is occupied! Choose another one!");
-                    TakeUserCoord(gridInput);
+                    TakeUserCoord(gridInput, ref player);
                 }
                 else
                 {
-                    gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] = 'X';
+                    gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] = player;
                 }
             }
+            if (player == 'X')
+            {
+                player = 'O';
+            }
+            else
+                player = 'X';
             return gridInput;
         }
 
