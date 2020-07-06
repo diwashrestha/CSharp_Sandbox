@@ -6,7 +6,7 @@ namespace Tic_Tac_Toe
     {
         public static void Main(string[] args)
         {
-            
+
             // stage 1
             // Console.WriteLine("X O X");
             // Console.WriteLine("O X O");
@@ -33,22 +33,14 @@ namespace Tic_Tac_Toe
             }
 
             PrintUserArray(user2dInput);
-            Console.WriteLine("Enter the Coordinates: ");
+
+            TakeUserCoord(user2dInput);
 
             // Taking coordinates from user
             //string coord = Console.ReadLine();
             //char[] coorCharArray = coord.ToCharArray();
             //int[] coordIntArray = Array.ConvertAll(coorCharArray, c => (int)Char.GetNumericValue(c));
-            try
-            {
-                user2dInput = TakeUserCoord(user2dInput);
-            }
- 
-            catch (Exception occupiedEx)
-            {
-                Console.WriteLine("{0}", occupiedEx.Message);
-                TakeUserCoord(user2dInput);
-            }
+
 
             //user2dInput[(3 - coordIntArray[1]), (coordIntArray[0] - 1)] = 'X';
             PrintUserArray(user2dInput);
@@ -63,6 +55,7 @@ namespace Tic_Tac_Toe
         // Method for taking user input for the Coordinates
         private static char[,]  TakeUserCoord(char[,] grid2DArray)
         {
+            Console.WriteLine("Enter the Coordinates: ");
             string coord = Console.ReadLine();
             char[] coordCharArray = coord.ToCharArray();
             int[] coordIntArray = Array.ConvertAll(coordCharArray, c => (int)Char.GetNumericValue(c));
@@ -74,10 +67,16 @@ namespace Tic_Tac_Toe
         // Method for checking the  user input for the coordinates
         public static char[,]  CheckUserCoord(int[] userCoord, char[,] gridInput)
         {
-            if (gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'X' || gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'O')
+            if (userCoord[0] > 3 || userCoord[0] < 1 || userCoord[1] > 3 || userCoord[1] < 1)
             {
-                Exception occupiedEx = new Exception("This cell is occupied! Choose another one!");
-                throw occupiedEx;
+                Console.WriteLine("Coordinates should be from 1 to 3!");
+                TakeUserCoord(gridInput);
+            }
+
+            else if (gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'X' || gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'O')
+            {
+                Console.WriteLine("This cell is occupied! Choose another one!");
+                TakeUserCoord(gridInput);
             }
             else
             {
