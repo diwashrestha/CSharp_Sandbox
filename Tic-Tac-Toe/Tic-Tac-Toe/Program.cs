@@ -120,7 +120,7 @@ namespace Tic_Tac_Toe
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if ((userInput[i, j] == '_'))
+                    if ((userInput[i, j] == '_'|| userInput[i, j] == ' '))
                     {
                         isSpace = true;
                     }
