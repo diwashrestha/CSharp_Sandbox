@@ -14,7 +14,7 @@ namespace Tic_Tac_Toe
 
 
             // stage 2
-            Console.WriteLine("Enter cells:");
+            Console.WriteLine("Enter cells: ");
             string userInput = Console.ReadLine();
             char[] user1dInput = userInput.ToCharArray();
 
@@ -33,13 +33,24 @@ namespace Tic_Tac_Toe
             }
 
             PrintUserArray(user2dInput);
-            Console.WriteLine("Enter the Coordinates:");
+            Console.WriteLine("Enter the Coordinates: ");
 
-            string coord = Console.ReadLine();
-            char[] coorCharArray = coord.ToCharArray();
-            int[] coordIntArray = Array.ConvertAll(coorCharArray, c => (int)Char.GetNumericValue(c));
+            // Taking coordinates from user
+            //string coord = Console.ReadLine();
+            //char[] coorCharArray = coord.ToCharArray();
+            //int[] coordIntArray = Array.ConvertAll(coorCharArray, c => (int)Char.GetNumericValue(c));
+            try
+            {
+                user2dInput = TakeUserCoord(user2dInput);
+            }
+ 
+            catch (Exception occupiedEx)
+            {
+                Console.WriteLine("{0}", occupiedEx.Message);
+                TakeUserCoord(user2dInput);
+            }
 
-            user2dInput[(3 - coordIntArray[1]), (coordIntArray[0] - 1)] = 'X';
+            //user2dInput[(3 - coordIntArray[1]), (coordIntArray[0] - 1)] = 'X';
             PrintUserArray(user2dInput);
 
             // if (CheckWin(user2dInput, ref gameEnd, ref gameMessage))
@@ -49,6 +60,31 @@ namespace Tic_Tac_Toe
             Console.ReadLine();
         }
 
+        // Method for taking user input for the Coordinates
+        private static char[,]  TakeUserCoord(char[,] grid2DArray)
+        {
+            string coord = Console.ReadLine();
+            char[] coordCharArray = coord.ToCharArray();
+            int[] coordIntArray = Array.ConvertAll(coordCharArray, c => (int)Char.GetNumericValue(c));
+
+            char[,] gridInput = CheckUserCoord(coordIntArray, grid2DArray);
+            return gridInput;
+        }
+
+        // Method for checking the  user input for the coordinates
+        public static char[,]  CheckUserCoord(int[] userCoord, char[,] gridInput)
+        {
+            if (gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'X' || gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] == 'O')
+            {
+                Exception occupiedEx = new Exception("This cell is occupied! Choose another one!");
+                throw occupiedEx;
+            }
+            else
+            {
+                gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] = 'X';
+            }
+            return gridInput;
+        }
 
         private static char PrintUserArray(char [,] userInput)
         {
