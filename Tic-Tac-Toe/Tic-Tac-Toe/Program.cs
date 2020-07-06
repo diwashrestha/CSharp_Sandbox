@@ -6,15 +6,7 @@ namespace Tic_Tac_Toe
     {
         public static void Main(string[] args)
         {
-
-            // stage 1
-            // Console.WriteLine("X O X");
-            // Console.WriteLine("O X O");
-            // Console.WriteLine("X X O");
-
-
-            // stage 2
-            // final stage
+            //  stage 5
             Console.WriteLine("The grid and coordinates for the game is:");
 
             Console.WriteLine("\n------------------");
@@ -24,7 +16,7 @@ namespace Tic_Tac_Toe
             Console.WriteLine("------------------");
 
 
-            Console.WriteLine("Tic - Tac - Toe ! : ");
+            Console.WriteLine("\n ***** Tic - Tac - Toe ! ***** : \n");
             string userInput = "         ";
             char[] user1dInput = userInput.ToCharArray();
             char player = 'X';
@@ -49,6 +41,9 @@ namespace Tic_Tac_Toe
             {
                 user2dInput = TakeUserCoord(user2dInput,ref player);
                 PrintUserArray(user2dInput);
+
+                player = player == 'X' ? 'O' : 'X';
+
                 CheckWin(user2dInput, ref gameEnd, ref gameMessage);
             }
             Console.WriteLine("{0}", gameMessage);
@@ -100,12 +95,6 @@ namespace Tic_Tac_Toe
                     gridInput[(3 - userCoord[1]), (userCoord[0] - 1)] = player;
                 }
             }
-            if (player == 'X')
-            {
-                player = 'O';
-            }
-            else
-                player = 'X';
             return gridInput;
         }
 
