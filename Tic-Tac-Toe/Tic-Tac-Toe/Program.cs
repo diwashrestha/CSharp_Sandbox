@@ -6,6 +6,7 @@ namespace Tic_Tac_Toe
     {
         public static void Main(string[] args)
         {
+            
             // stage 1
             // Console.WriteLine("X O X");
             // Console.WriteLine("O X O");
@@ -15,7 +16,6 @@ namespace Tic_Tac_Toe
             // stage 2
             Console.WriteLine("Enter cells:");
             string userInput = Console.ReadLine();
-            Console.WriteLine(userInput);
             char[] user1dInput = userInput.ToCharArray();
 
             bool gameEnd = false;
@@ -32,6 +32,27 @@ namespace Tic_Tac_Toe
                 }
             }
 
+            PrintUserArray(user2dInput);
+            Console.WriteLine("Enter the Coordinates:");
+
+            string coord = Console.ReadLine();
+            char[] coorCharArray = coord.ToCharArray();
+            int[] coordIntArray = Array.ConvertAll(coorCharArray, c => (int)Char.GetNumericValue(c));
+
+            user2dInput[(3 - coordIntArray[1]), (coordIntArray[0] - 1)] = 'X';
+            PrintUserArray(user2dInput);
+
+            // if (CheckWin(user2dInput, ref gameEnd, ref gameMessage))
+           // {
+           //     Console.WriteLine("{0}",gameMessage);
+           // }
+            Console.ReadLine();
+        }
+
+
+        private static char PrintUserArray(char [,] userInput)
+        {
+
             Console.WriteLine("---------");
             for (int i = 0; i < 3; i++)
             {
@@ -39,7 +60,7 @@ namespace Tic_Tac_Toe
                 Console.Write(" ");
                 for (int j = 0; j < 3; j++)
                 {
-                    Console.Write(user2dInput[i,j]);
+                    Console.Write(userInput[i, j]);
                     Console.Write(" ");
                 }
                 Console.Write(" ");
@@ -47,16 +68,8 @@ namespace Tic_Tac_Toe
                 Console.Write("\n");
             }
             Console.WriteLine("---------");
-
-
-            if (CheckWin(user2dInput, ref gameEnd, ref gameMessage))
-            {
-                Console.WriteLine("{0}",gameMessage);
-            }
-            Console.ReadLine();
+            return '0';
         }
-
-
 
         private static bool CheckWin(char[,] input, ref bool gameEnd , ref string gameMessage)
         {
