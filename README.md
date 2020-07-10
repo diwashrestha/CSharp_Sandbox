@@ -1,2 +1,2 @@
-# CSharp_Sandbox
-Projects made with CSharp.
+# CSharp Sandbox
+Projects made with C# while learning the C#.
