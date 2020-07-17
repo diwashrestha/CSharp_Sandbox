@@ -84,20 +84,7 @@ namespace Tic_Tac_Toe
             }
             else
             {
-                Console.WriteLine(" ----------------------------");
-                Console.WriteLine(" |         Point Table       |");
-                Console.WriteLine(" ----------------------------");
-                Console.WriteLine(" |    X    |    O   |  Draw  |");
-                Console.WriteLine(" ----------------------------");
-                Console.Write(" |");
-                for (int i = 0; i < 3; i++)
-                {
-                    Console.Write("    {0}    ", winCount[i]);
-                }
-                Console.Write("|");
-                Console.Write("\n");
-                Console.WriteLine(" ---------------------------");
-                Console.WriteLine("*** Have a great day! ***");
+                Console.WriteLine("*** Have a great day! See You Again ***");
             }
 
 
